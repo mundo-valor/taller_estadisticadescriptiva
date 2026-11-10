@@ -82,10 +82,13 @@
                         <i class="fa-brands fa-youtube text-red-500"></i> Videos
                     </a>
                     <a href="#material" class="text-slate-300 hover:text-amber-400 transition py-1 px-2 rounded hover:bg-slate-800 flex items-center gap-1.5">
-                        <i class="fa-solid fa-file-pdf text-amber-500"></i> Material
+                        <i class="fa-solid fa-file-pdf text-amber-500"></i> Material (Lectura)
+                    </a>
+                    <a href="#ejercicios" class="text-slate-300 hover:text-emerald-400 transition py-1 px-2 rounded hover:bg-slate-800 flex items-center gap-1.5">
+                        <i class="fa-solid fa-file-excel text-emerald-400"></i> Ejercicios
                     </a>
                     <a href="#herramientas" class="text-slate-300 hover:text-cyan-400 transition py-1 px-2 rounded hover:bg-slate-800 flex items-center gap-1.5">
-                        <i class="fa-solid fa-screwdriver-wrench text-cyan-400"></i> Herramientas Especializadas
+                        <i class="fa-solid fa-screwdriver-wrench text-cyan-400"></i> Ecosistema de Herramientas
                     </a>
                 </div>
 
@@ -176,11 +179,18 @@
                              class="w-full h-auto object-cover transform group-hover:scale-102 transition duration-500">
                     </div>
                     
-                    <div class="mt-2.5 p-3 bg-slate-900/90 rounded-xl border border-slate-800 flex items-center justify-between text-xs text-slate-300">
-                        <span><i class="fa-solid fa-shield-halved text-emerald-400 mr-1.5"></i> Criterio Técnico y Estadístico</span>
-                        <a href="https://forms.gle/dEFqJ9JqrjZLxpFz6" target="_blank" class="text-emerald-400 hover:underline font-bold">
-                            Inscribirme <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
-                        </a>
+                    <!-- Botón interactivo: Preguntas Frecuentes (FAQ) en PDF solo lectura -->
+                    <div class="mt-2.5">
+                        <button onclick="abrirDocumento('Preguntas frecuentes FAQ.pdf', 'Preguntas Frecuentes (FAQ) - Taller')" 
+                                class="w-full py-3 px-4 bg-slate-900/90 hover:bg-emerald-950/70 border border-slate-700 hover:border-emerald-500/60 rounded-xl flex items-center justify-between text-xs sm:text-sm font-bold text-slate-200 hover:text-emerald-300 transition duration-200 shadow-md group/faq">
+                            <span class="flex items-center gap-2">
+                                <i class="fa-solid fa-circle-question text-emerald-400 text-base group-hover/faq:scale-110 transition-transform"></i>
+                                <span>Preguntas Frecuentes (FAQ)</span>
+                            </span>
+                            <span class="flex items-center gap-1.5 text-[11px] text-emerald-400 bg-emerald-950/60 px-2.5 py-1 rounded-md border border-emerald-500/40">
+                                <i class="fa-solid fa-file-pdf"></i> Ver PDF <i class="fa-solid fa-arrow-right text-[10px] ml-0.5"></i>
+                            </span>
+                        </button>
                     </div>
                 </div>
             </div>
@@ -263,19 +273,14 @@
     <!-- SECCIÓN 1: VIDEOS (FUNDAMENTACIÓN TEÓRICA VISUAL Y RIGUROSA) -->
     <!-- ========================================================================= -->
     <section id="videos" class="max-w-6xl mx-auto px-4 mb-20 scroll-mt-24">
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 border-b border-slate-800 pb-4 gap-4">
-            <div>
-                <span class="text-red-400 text-xs font-bold uppercase tracking-widest flex items-center gap-2">
-                    <i class="fa-brands fa-youtube text-red-500 text-base"></i> Sección 1 • Videoteca Teórica
-                </span>
-                <h2 class="text-3xl font-extrabold text-white mt-1">Fundamentación Teórica Visual y Rigurosa</h2>
-                <p class="text-slate-400 text-sm mt-1">
-                    Accede a las video-cápsulas conceptuales desarrolladas para asimilar el flujo completo: de la muestra a la decisión visual. Haz clic sobre cada imagen o botón para reproducir en YouTube.
-                </p>
-            </div>
-            <a href="https://www.youtube.com" target="_blank" class="text-xs text-slate-400 hover:text-white transition flex items-center gap-1.5 bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 flex-shrink-0">
-                <i class="fa-solid fa-play text-red-500"></i> YouTube Oficial
-            </a>
+        <div class="mb-8 border-b border-slate-800 pb-4">
+            <span class="text-red-400 text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+                <i class="fa-brands fa-youtube text-red-500 text-base"></i> Sección 1 • Videoteca Teórica
+            </span>
+            <h2 class="text-3xl font-extrabold text-white mt-1">Fundamentación Teórica Visual y Rigurosa</h2>
+            <p class="text-slate-400 text-sm mt-1">
+                Accede a las video-cápsulas conceptuales desarrolladas para asimilar el flujo completo: de la muestra a la decisión visual. Haz clic sobre cada imagen para reproducir directamente en YouTube.
+            </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -494,22 +499,313 @@
     </section>
 
     <!-- ========================================================================= -->
-    <!-- SECCIÓN 2: MATERIAL (DOCUMENTOS PDF CON VISOR MODAL INTEGRADO) -->
+    <!-- SECCIÓN 2: MATERIAL (DOCUMENTOS PDF - SOLO LECTURA EN LÍNEA) -->
     <!-- ========================================================================= -->
     <section id="material" class="max-w-6xl mx-auto px-4 mb-20 scroll-mt-24">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 border-b border-slate-800 pb-4 gap-4">
             <div>
                 <span class="text-amber-400 text-xs font-bold uppercase tracking-widest flex items-center gap-2">
-                    <i class="fa-solid fa-file-pdf text-amber-500 text-base"></i> Sección 2 • Material Didáctico en PDF
+                    <i class="fa-solid fa-lock text-amber-500 text-base"></i> Sección 2 • Material Didáctico en PDF (Solo Lectura)
                 </span>
                 <h2 class="text-3xl font-extrabold text-white mt-1">Material y Guías Metodológicas del Taller</h2>
                 <p class="text-slate-400 text-sm mt-1">
-                    Consulta los documentos de exposición, guías analíticas y presentaciones directamente en pantalla completa a través de nuestro visor integrado.
+                    Consulta los documentos de exposición, guías analíticas y presentaciones protegidas en nuestro visor integrado en pantalla completa (descarga deshabilitada).
                 </p>
             </div>
-            <span class="text-xs text-slate-400 bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700">
-                <i class="fa-solid fa-magnifying-glass text-emerald-400 mr-1"></i> Clic para Visualizar
+            <span class="text-xs text-amber-400 bg-amber-950/50 px-3 py-1.5 rounded-lg border border-amber-600/40 flex items-center gap-1.5">
+                <i class="fa-solid fa-shield-halved"></i> Solo Lectura en Pantalla
             </span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <!-- Acordeón 1: Material Principal de Exposición -->
+            <details open class="bg-slate-800/80 border border-slate-700 rounded-xl shadow-lg overflow-hidden group h-fit">
+                <summary class="flex justify-between items-center p-5 cursor-pointer bg-slate-800 hover:bg-slate-750 transition border-b border-slate-700/60">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-amber-900/40 text-amber-400 w-10 h-10 rounded-lg flex items-center justify-center text-lg border border-amber-500/30">
+                            <i class="fa-solid fa-chalkboard"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-white">Presentación General</h3>
+                            <span class="text-[11px] text-slate-400">Diapositivas y mapa de ruta</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300 icono-flecha"></i>
+                </summary>
+                
+                <div class="p-4 bg-slate-900/60 flex flex-col gap-2">
+                    <button onclick="abrirDocumento('0. Material Exposición.pdf', '0. Material de Exposición - Taller')" 
+                            class="flex items-center justify-between p-3 bg-slate-800 hover:bg-amber-950/40 border border-slate-700 hover:border-amber-500/50 rounded-lg transition text-left w-full group/btn">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-file-pdf text-amber-500 text-xl"></i>
+                            <div>
+                                <span class="text-sm font-semibold text-slate-200 group-hover/btn:text-white block">0. Material Exposición.pdf</span>
+                                <span class="text-[10px] text-slate-400">Guía de sesión intensiva de 3 horas</span>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-book-open-reader text-slate-500 group-hover/btn:text-amber-400 text-sm"></i>
+                    </button>
+
+                    <button onclick="abrirDocumento('1. Videos_Base Estadística.pdf', '1. Videos - Base Estadística')" 
+                            class="flex items-center justify-between p-3 bg-slate-800 hover:bg-amber-950/40 border border-slate-700 hover:border-amber-500/50 rounded-lg transition text-left w-full group/btn">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-file-pdf text-amber-500 text-xl"></i>
+                            <div>
+                                <span class="text-sm font-semibold text-slate-200 group-hover/btn:text-white block">1. Videos_Base Estadística.pdf</span>
+                                <span class="text-[10px] text-slate-400">Fundamentos y mapa de decisión</span>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-book-open-reader text-slate-500 group-hover/btn:text-amber-400 text-sm"></i>
+                    </button>
+                </div>
+            </details>
+
+            <!-- Acordeón 2: Visualización e Histogramas -->
+            <details open class="bg-slate-800/80 border border-slate-700 rounded-xl shadow-lg overflow-hidden group h-fit">
+                <summary class="flex justify-between items-center p-5 cursor-pointer bg-slate-800 hover:bg-slate-750 transition border-b border-slate-700/60">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-emerald-900/40 text-emerald-400 w-10 h-10 rounded-lg flex items-center justify-center text-lg border border-emerald-500/30">
+                            <i class="fa-solid fa-chart-simple"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-white">Variables y Distribuciones</h3>
+                            <span class="text-[11px] text-slate-400">Visualización & Histogramas</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300 icono-flecha"></i>
+                </summary>
+                
+                <div class="p-4 bg-slate-900/60 flex flex-col gap-2">
+                    <button onclick="abrirDocumento('2. Visualización_de_Datos_Inmobiliarios.pdf', '2. Visualización de Datos Inmobiliarios')" 
+                            class="flex items-center justify-between p-3 bg-slate-800 hover:bg-emerald-950/40 border border-slate-700 hover:border-emerald-500/50 rounded-lg transition text-left w-full group/btn">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-file-pdf text-emerald-400 text-xl"></i>
+                            <div>
+                                <span class="text-sm font-semibold text-slate-200 group-hover/btn:text-white block">2. Visualización de Datos Inmobiliarios</span>
+                                <span class="text-[10px] text-slate-400">Guía de variables y gráficos</span>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-book-open-reader text-slate-500 group-hover/btn:text-emerald-400 text-sm"></i>
+                    </button>
+
+                    <button onclick="abrirDocumento('3. Histogramas_Inmobiliarios.pdf', '3. Histogramas Inmobiliarios')" 
+                            class="flex items-center justify-between p-3 bg-slate-800 hover:bg-emerald-950/40 border border-slate-700 hover:border-emerald-500/50 rounded-lg transition text-left w-full group/btn">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-file-pdf text-emerald-400 text-xl"></i>
+                            <div>
+                                <span class="text-sm font-semibold text-slate-200 group-hover/btn:text-white block">3. Histogramas_Inmobiliarios.pdf</span>
+                                <span class="text-[10px] text-slate-400">Sturges, amplitud y frecuencias</span>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-book-open-reader text-slate-500 group-hover/btn:text-emerald-400 text-sm"></i>
+                    </button>
+                </div>
+            </details>
+
+            <!-- Acordeón 3: Tendencia Central, Dispersión y Probabilidades -->
+            <details open class="bg-slate-800/80 border border-slate-700 rounded-xl shadow-lg overflow-hidden group h-fit md:col-span-2 lg:col-span-1">
+                <summary class="flex justify-between items-center p-5 cursor-pointer bg-slate-800 hover:bg-slate-750 transition border-b border-slate-700/60">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-cyan-900/40 text-cyan-400 w-10 h-10 rounded-lg flex items-center justify-center text-lg border border-cyan-500/30">
+                            <i class="fa-solid fa-calculator"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-white">Saneamiento y Probabilidad</h3>
+                            <span class="text-[11px] text-slate-400">Inferencia, Chauvenet e IC</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300 icono-flecha"></i>
+                </summary>
+                
+                <div class="p-4 bg-slate-900/60 flex flex-col gap-2">
+                    <button onclick="abrirDocumento('4. Medidas_ tendencia central.pdf', '4. Medidas de Tendencia Central')" 
+                            class="flex items-center justify-between p-3 bg-slate-800 hover:bg-cyan-950/40 border border-slate-700 hover:border-cyan-500/50 rounded-lg transition text-left w-full group/btn">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-file-pdf text-cyan-400 text-xl"></i>
+                            <div>
+                                <span class="text-sm font-semibold text-slate-200 group-hover/btn:text-white block">4. Medidas_ tendencia central.pdf</span>
+                                <span class="text-[10px] text-slate-400">Media, Mediana, Moda & Zillow</span>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-book-open-reader text-slate-500 group-hover/btn:text-cyan-400 text-sm"></i>
+                    </button>
+
+                    <button onclick="abrirDocumento('5. Medidas-Dispersion.pdf', '5. Medidas de Dispersión y Saneamiento')" 
+                            class="flex items-center justify-between p-3 bg-slate-800 hover:bg-cyan-950/40 border border-slate-700 hover:border-cyan-500/50 rounded-lg transition text-left w-full group/btn">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-file-pdf text-cyan-400 text-xl"></i>
+                            <div>
+                                <span class="text-sm font-semibold text-slate-200 group-hover/btn:text-white block">5. Medidas-Dispersion.pdf</span>
+                                <span class="text-[10px] text-slate-400">Varianza, CV & Filtro Chauvenet</span>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-book-open-reader text-slate-500 group-hover/btn:text-cyan-400 text-sm"></i>
+                    </button>
+
+                    <button onclick="abrirDocumento('7. Distribucion_Probabilidades.pdf', '7. Distribución de Probabilidades')" 
+                            class="flex items-center justify-between p-3 bg-slate-800 hover:bg-cyan-950/40 border border-slate-700 hover:border-cyan-500/50 rounded-lg transition text-left w-full group/btn">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-file-pdf text-cyan-400 text-xl"></i>
+                            <div>
+                                <span class="text-sm font-semibold text-slate-200 group-hover/btn:text-white block">7. Distribución_Probabilidades.pdf</span>
+                                <span class="text-[10px] text-slate-400">Gauss, t-Student & Decisiones</span>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-book-open-reader text-slate-500 group-hover/btn:text-cyan-400 text-sm"></i>
+                    </button>
+                </div>
+            </details>
+
+        </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SECCIÓN 3: EJERCICIOS Y DATASETS DEL TALLER (ARCHIVOS DESCARGABLES) -->
+    <!-- ========================================================================= -->
+    <section id="ejercicios" class="max-w-6xl mx-auto px-4 mb-20 scroll-mt-24">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 border-b border-slate-800 pb-4 gap-4">
+            <div>
+                <span class="text-emerald-400 text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+                    <i class="fa-solid fa-file-excel text-emerald-400 text-base"></i> Sección 3 • Recursos Prácticos Descargables
+                </span>
+                <h2 class="text-3xl font-extrabold text-white mt-1">Ejercicios y Datasets del Taller</h2>
+                <p class="text-slate-400 text-sm mt-1">
+                    Descarga las hojas de cálculo y bases de datos reales en formatos Excel (.xlsx) y CSV para ejecutar los ejercicios prácticos y alimentar las herramientas del ecosistema.
+                </p>
+            </div>
+            <span class="text-xs text-slate-400 bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 flex-shrink-0">
+                <i class="fa-solid fa-download text-emerald-400 mr-1.5"></i> Descarga Directa
+            </span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <!-- Ejercicio 1 -->
+            <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 shadow-xl card-glow flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-950/70 border border-emerald-500/40 text-emerald-400 flex items-center justify-center text-2xl">
+                            <i class="fa-solid fa-file-excel"></i>
+                        </div>
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-400 bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-500/30">
+                            .XLSX
+                        </span>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">1. Prueba_Normal.xlsx</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                        Muestra de prueba para verificación de normalidad, ajuste de histograma y cálculo de frecuencias relativas y acumuladas.
+                    </p>
+                </div>
+                <a href="1. Prueba_Normal.xlsx" download 
+                   class="w-full bg-emerald-700/80 hover:bg-emerald-600 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition flex items-center justify-center gap-2 border border-emerald-500 shadow-md">
+                    <i class="fa-solid fa-download"></i> Descargar Ejercicio 1
+                </a>
+            </div>
+
+            <!-- Ejercicio 2 -->
+            <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 shadow-xl card-glow flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-950/70 border border-emerald-500/40 text-emerald-400 flex items-center justify-center text-2xl">
+                            <i class="fa-solid fa-file-excel"></i>
+                        </div>
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-400 bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-500/30">
+                            .XLSX
+                        </span>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">2. Prueba_saneamiento.xlsx</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                        Base de comparables para aplicar protocolos de detección de datos atípicos y saneamiento muestral según Chauvenet y Boxplot.
+                    </p>
+                </div>
+                <a href="2. Prueba_saneamiento.xlsx" download 
+                   class="w-full bg-emerald-700/80 hover:bg-emerald-600 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition flex items-center justify-center gap-2 border border-emerald-500 shadow-md">
+                    <i class="fa-solid fa-download"></i> Descargar Ejercicio 2
+                </a>
+            </div>
+
+            <!-- Ejercicio 3 -->
+            <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 shadow-xl card-glow flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-cyan-950/70 border border-cyan-500/40 text-cyan-400 flex items-center justify-center text-2xl">
+                            <i class="fa-solid fa-file-csv"></i>
+                        </div>
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-cyan-400 bg-cyan-950/60 px-2.5 py-1 rounded-full border border-cyan-500/30">
+                            .CSV
+                        </span>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">3. Prueba_Normal100 csv.csv</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                        Dataset con 100 observaciones inmobiliarias para validar el Teorema del Límite Central y contrastes estadísticos continuos.
+                    </p>
+                </div>
+                <a href="3. Prueba_Normal100 csv.csv" download 
+                   class="w-full bg-cyan-700/80 hover:bg-cyan-600 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition flex items-center justify-center gap-2 border border-cyan-500 shadow-md">
+                    <i class="fa-solid fa-download"></i> Descargar Dataset 3
+                </a>
+            </div>
+
+            <!-- Ejercicio 4 -->
+            <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 shadow-xl card-glow flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-emerald-950/70 border border-emerald-500/40 text-emerald-400 flex items-center justify-center text-2xl">
+                            <i class="fa-solid fa-file-excel"></i>
+                        </div>
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-emerald-400 bg-emerald-950/60 px-2.5 py-1 rounded-full border border-emerald-500/30">
+                            .XLSX
+                        </span>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">4. Prueba_Multivariable50.xlsx</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                        Muestra multivariada de 50 registros para correlaciones bivariadas, matrices de dispersión y análisis de atributos de inmuebles.
+                    </p>
+                </div>
+                <a href="4. Prueba_Multivariable50.xlsx" download 
+                   class="w-full bg-emerald-700/80 hover:bg-emerald-600 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition flex items-center justify-center gap-2 border border-emerald-500 shadow-md">
+                    <i class="fa-solid fa-download"></i> Descargar Ejercicio 4
+                </a>
+            </div>
+
+            <!-- Ejercicio 5 -->
+            <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 shadow-xl card-glow flex flex-col justify-between md:col-span-2 lg:col-span-2">
+                <div>
+                    <div class="flex items-center justify-between mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-cyan-950/70 border border-cyan-500/40 text-cyan-400 flex items-center justify-center text-2xl">
+                            <i class="fa-solid fa-file-csv"></i>
+                        </div>
+                        <span class="text-[11px] font-bold uppercase tracking-wider text-cyan-400 bg-cyan-950/60 px-2.5 py-1 rounded-full border border-cyan-500/30">
+                            .CSV (Econometría)
+                        </span>
+                    </div>
+                    <h3 class="text-base font-bold text-white mb-2">5. Base_econometria.csv</h3>
+                    <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                        Base de datos preparada con variables continuas y categóricas para cargar en la herramienta EconometricVal Pro y calibrar modelos de regresión lineal múltiple conformes con la norma ABNT NBR 14653-2.
+                    </p>
+                </div>
+                <a href="5. Base_econometria.csv" download 
+                   class="w-full bg-cyan-700/80 hover:bg-cyan-600 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition flex items-center justify-center gap-2 border border-cyan-500 shadow-md">
+                    <i class="fa-solid fa-download"></i> Descargar Base Econométrica 5 (.csv)
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SECCIÓN 4: ECOSISTEMA DE HERRAMIENTAS ESPECIALIZADAS -->
+    <!-- ========================================================================= -->
+    <section id="herramientas" class="max-w-6xl mx-auto px-4 mb-20 scroll-mt-24">
+        <div class="mb-8 border-b border-slate-800 pb-4">
+            <span class="text-cyan-400 text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+                <i class="fa-solid fa-screwdriver-wrench text-cyan-400 text-base"></i> Sección 4 • Plataformas Prácticas
+            </span>
+            <h2 class="text-3xl font-extrabold text-white mt-1">Ecosistema de herramientas especializadas</h2>
+            <p class="text-slate-400 text-sm mt-1">
+                Diseñadas específicamente para el profesional del avalúo: extracción mediante webscraping, saneamiento riguroso de atípicos, dashboards industriales y econometría inferencial. Haz clic sobre cada imagen para abrir la aplicación web.
+            </p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -854,7 +1150,7 @@
             <div class="absolute -left-16 -bottom-16 w-52 h-52 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
             
             <span class="text-emerald-400 font-extrabold text-xs uppercase tracking-widest mb-3 block">
-                Convocatoria Abierta • Plazas Limitadas
+                Convocatoria Abierta • Máximo 10 Participantes
             </span>
             <h2 class="text-2xl sm:text-4xl font-extrabold text-white mb-4 leading-tight">
                 «Los datos reflejan la realidad del mercado; <br class="hidden sm:inline">la estadística nos da la certeza de su valor.»
@@ -885,14 +1181,16 @@
                 <p class="text-slate-500 mt-1">&copy; Miguel Camacaro Ediciones. Todos los derechos reservados.</p>
             </div>
             
-            <div class="flex items-center gap-4 text-slate-400">
+            <div class="flex items-center gap-4 text-slate-400 flex-wrap justify-center">
                 <a href="#presentacion" class="hover:text-emerald-400 transition">Inicio</a>
                 <span>•</span>
                 <a href="#videos" class="hover:text-emerald-400 transition">Videos</a>
                 <span>•</span>
-                <a href="#material" class="hover:text-amber-400 transition">Material</a>
+                <a href="#material" class="hover:text-amber-400 transition">Material (Lectura)</a>
                 <span>•</span>
-                <a href="#herramientas" class="hover:text-cyan-400 transition">Herramientas Especializadas</a>
+                <a href="#ejercicios" class="hover:text-emerald-400 transition">Ejercicios</a>
+                <span>•</span>
+                <a href="#herramientas" class="hover:text-cyan-400 transition">Ecosistema de Herramientas</a>
                 <span>•</span>
                 <a href="https://paypal.me/spilimcurso" target="_blank" class="text-blue-400 hover:underline">Apoyar con Donación</a>
             </div>
@@ -900,10 +1198,10 @@
     </footer>
 
     <!-- ========================================================================= -->
-    <!-- VISOR MODAL INDIVIDUAL (PANTALLA COMPLETA CON IFRAME) -->
+    <!-- VISOR MODAL INDIVIDUAL (PANTALLA COMPLETA - SOLO LECTURA, SIN DESCARGA) -->
     <!-- ========================================================================= -->
     <div id="visor-modal" class="fixed inset-0 z-50 bg-slate-950/95 hidden flex-col transition-opacity duration-300">
-        <!-- Cabecera del visor -->
+        <!-- Cabecera del visor sin botón de descarga -->
         <div class="flex justify-between items-center px-4 md:px-6 py-3 bg-slate-900 border-b border-slate-800 shadow-xl">
             <div class="flex items-center gap-3 overflow-hidden">
                 <div class="w-8 h-8 rounded bg-amber-500/20 text-amber-400 flex items-center justify-center flex-shrink-0">
@@ -912,12 +1210,12 @@
                 <h3 id="visor-titulo" class="text-white font-bold text-sm md:text-base truncate">
                     <span>Documento</span>
                 </h3>
+                <span class="text-[11px] bg-slate-800 text-amber-400 px-2 py-0.5 rounded border border-amber-600/30 hidden sm:inline-flex items-center gap-1">
+                    <i class="fa-solid fa-lock text-[10px]"></i> Solo Lectura
+                </span>
             </div>
             
             <div class="flex items-center gap-2">
-                <a id="btn-descarga-modal" href="#" download class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white px-3 py-1.5 rounded-lg border border-slate-700 transition flex items-center gap-1.5">
-                    <i class="fa-solid fa-download text-emerald-400"></i> <span class="hidden sm:inline">Descargar</span>
-                </a>
                 <button onclick="cerrarVisorModal()" class="text-slate-400 hover:text-red-400 transition p-1.5 rounded-lg hover:bg-slate-800 focus:outline-none" title="Cerrar Visor (Esc)">
                     <i class="fa-solid fa-xmark text-2xl"></i>
                 </button>
@@ -930,17 +1228,16 @@
         </div>
     </div>
 
-    <!-- SCRIPT DEL VISOR MODAL -->
+    <!-- SCRIPT DEL VISOR MODAL (SOLO LECTURA) -->
     <script>
         const modal = document.getElementById('visor-modal');
         const iframe = document.getElementById('visor-iframe');
         const tituloSpan = document.querySelector('#visor-titulo span');
-        const btnDescarga = document.getElementById('btn-descarga-modal');
 
         function abrirDocumento(rutaArchivo, nombreDocumento) {
             tituloSpan.innerText = nombreDocumento;
-            btnDescarga.href = rutaArchivo;
-            iframe.src = rutaArchivo + "#toolbar=1&navpanes=0&scrollbar=1";
+            // Configurar el visor PDF nativo del navegador con barra de herramientas deshabilitada
+            iframe.src = rutaArchivo + "#toolbar=0&navpanes=0&scrollbar=1";
             
             modal.classList.remove('hidden');
             modal.classList.add('flex');
@@ -951,7 +1248,6 @@
         function cerrarVisorModal() {
             iframe.src = "about:blank";
             tituloSpan.innerText = "Documento";
-            btnDescarga.href = "#";
             
             modal.classList.add('hidden');
             modal.classList.remove('flex');
