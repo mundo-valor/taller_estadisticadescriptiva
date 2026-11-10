@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taller: Análisis Estadístico Descriptivo de Muestras del Mercado Inmobiliario | Escuela Miguel Camacaro</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Desactivar flechas del details nativo */
+        details > summary { list-style: none; outline: none; }
+        details > summary::-webkit-details-marker { display: none; }
+        details[open] summary ~ * { animation: slideDown 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
+        @keyframes slideDown {
+            0% { opacity: 0; transform: translateY(-10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        details[open] summary .icono-flecha { transform: rotate(180deg); }
+        
+        /* Protección básica de interacción coherente con script de referencia */
+        .no-select { user-select: none; -webkit-user-select: none; }
+
+        /* Estilo general scrollbar dark */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #475569; }
+
+        /* Efecto Glow sutil para tarjetas */
+        .card-glow:hover {
+            box-shadow: 0 10px 25px -5px rgba(16, 185, 129, 0.15), 0 8px 10px -6px rgba(16, 185, 129, 0.1);
+        }
+    </style>
+</head>
+<body class="text-slate-200 font-sans antialiased min-h-screen relative pb-16 no-select bg-slate-900" oncontextmenu="return false;">
+
+    <!-- FONDOS CON TRATAMIENTO DE VISIBILIDAD Y MALLA SUTIL -->
+    <div class="fixed inset-0 z-[-2] bg-slate-950"></div>
+    <div class="fixed inset-0 z-[-1] bg-gradient-to-b from-slate-900 via-slate-800/90 to-slate-950 opacity-95"></div>
+
+    <!-- NAVEGACIÓN SUPERIOR CON LOGOS Y BOTONES -->
+    <nav class="w-full bg-slate-900/90 border-b border-slate-700/80 backdrop-blur-md sticky top-0 z-40 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-col md:flex-row justify-between items-center gap-4">
+            
+            <!-- Logo Izquierdo: Miguel Camacaro Ediciones -->
+            <div class="flex items-center gap-3">
+                <img src="LogoMCE.png" 
+                     onerror="this.onerror=null; this.src='https://placehold.co/180x60/1e293b/38bdf8?text=Miguel+Camacaro+Ediciones'" 
+                     alt="Miguel Camacaro Ediciones" 
+                     class="h-12 md:h-14 object-contain bg-slate-800/90 border border-slate-700 rounded-lg p-1.5 drop-shadow-md">
+                <span class="hidden sm:inline-block text-xs font-semibold uppercase tracking-wider text-slate-400 border-l border-slate-700 pl-3">
+                    Escuela de<br><strong class="text-emerald-400">Valuación</strong>
+                </span>
+            </div>
+            
+            <!-- Enlaces de Navegación -->
+            <div class="flex items-center gap-3 md:gap-5 flex-wrap justify-center text-xs md:text-sm font-semibold">
+                <a href="#presentacion" class="text-slate-300 hover:text-white transition py-1 px-2 rounded hover:bg-slate-800">Presentación</a>
+                <a href="#facilitador" class="text-slate-300 hover:text-white transition py-1 px-2 rounded hover:bg-slate-800">Facilitador</a>
+                <a href="#videos" class="text-slate-300 hover:text-emerald-400 transition py-1 px-2 rounded hover:bg-slate-800 flex items-center gap-1.5">
+                    <i class="fa-brands fa-youtube text-red-500"></i> Videos
+                </a>
+                <a href="#material" class="text-slate-300 hover:text-emerald-400 transition py-1 px-2 rounded hover:bg-slate-800 flex items-center gap-1.5">
+                    <i class="fa-solid fa-file-pdf text-amber-500"></i> Material
+                </a>
+                <a href="#herramientas" class="text-slate-300 hover:text-emerald-400 transition py-1 px-2 rounded hover:bg-slate-800 flex items-center gap-1.5">
+                    <i class="fa-solid fa-screwdriver-wrench text-blue-400"></i> Herramientas
+                </a>
+            </div>
+
+            <!-- Botones de Acción (Reserva & Donar) -->
+            <div class="flex items-center gap-3">
+                <a href="https://forms.gle/dEFqJ9JqrjZLxpFz6" target="_blank" 
+                   class="bg-emerald-600 hover:bg-emerald-500 text-white text-xs md:text-sm font-bold px-4 py-2.5 rounded-lg shadow-lg shadow-emerald-950/60 transition transform hover:-translate-y-0.5 border border-emerald-400 flex items-center gap-2">
+                    <i class="fa-solid fa-ticket"></i> Reservar Cupo
+                </a>
+                <a href="https://paypal.me/spilimcurso" target="_blank" 
+                   class="bg-blue-600 hover:bg-blue-500 text-white text-xs md:text-sm font-bold px-3.5 py-2.5 rounded-lg shadow-lg transition transform hover:-translate-y-0.5 border border-blue-400 flex items-center gap-1.5"
+                   title="Donar para el proyecto y desarrollo de herramientas de acceso libre">
+                    <i class="fa-brands fa-paypal"></i> Donar
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ENCABEZADO / HERO SECTION -->
+    <header id="presentacion" class="max-w-6xl mx-auto px-4 pt-10 pb-16 md:pt-14 md:pb-20">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+            
+            <div class="lg:col-span-7 text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 bg-emerald-950/80 border border-emerald-500/50 text-emerald-300 text-xs font-bold uppercase tracking-widest px-4 py-1.5 rounded-full mb-6 shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                    Taller Intensivo On Line | 13 de Noviembre de 2026
+                </div>
+                
+                <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+                    Análisis Estadístico Descriptivo <br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-teal-300 to-cyan-400">
+                        de Muestras del Mercado Inmobiliario
+                    </span>
+                </h1>
+                
+                <p class="text-base sm:text-lg text-slate-300 mb-6 leading-relaxed">
+                    El mercado inmobiliario habla a través de los datos: <strong class="text-white">¿está tu valuación preparada para interpretarlo con rigor científico?</strong>
+                </p>
+                
+                <p class="text-sm text-slate-400 mb-8 leading-relaxed">
+                    En la valuación inmobiliaria contemporánea, una estimación no puede depender de la intuición ni de promedios aislados. El valor real se fundamenta en la capacidad de extraer, sanear, analizar e interpretar muestras de mercado con solvencia estadística y criterio técnico bajo la integración de la ciencia de la valuación, la ciencia de datos y la inteligencia artificial generativa.
+                </p>
+
+                <!-- Tarjetas resumen de fecha y formato -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-8 text-left">
+                    <div class="bg-slate-800/80 border border-slate-700/80 p-3 rounded-xl">
+                        <span class="text-xs text-slate-400 block"><i class="fa-regular fa-calendar text-emerald-400 mr-1"></i> Fecha</span>
+                        <strong class="text-sm text-white">13 Nov 2026</strong>
+                    </div>
+                    <div class="bg-slate-800/80 border border-slate-700/80 p-3 rounded-xl">
+                        <span class="text-xs text-slate-400 block"><i class="fa-regular fa-clock text-emerald-400 mr-1"></i> Horario</span>
+                        <strong class="text-sm text-white">14:00 - 17:00 h</strong>
+                        <span class="text-[10px] text-slate-400 block">Hora Madrid</span>
+                    </div>
+                    <div class="bg-slate-800/80 border border-slate-700/80 p-3 rounded-xl">
+                        <span class="text-xs text-slate-400 block"><i class="fa-solid fa-hourglass-half text-emerald-400 mr-1"></i> Duración</span>
+                        <strong class="text-sm text-white">3 Horas</strong>
+                        <span class="text-[10px] text-slate-400 block">Concentradas</span>
+                    </div>
+                    <div class="bg-slate-800/80 border border-slate-700/80 p-3 rounded-xl">
+                        <span class="text-xs text-slate-400 block"><i class="fa-solid fa-chalkboard-user text-emerald-400 mr-1"></i> Modalidad</span>
+                        <strong class="text-sm text-white">100% Online</strong>
+                        <span class="text-[10px] text-slate-400 block">En Vivo + Recursos</span>
+                    </div>
+                </div>
+
+                <!-- Botones CTA -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                    <a href="https://forms.gle/dEFqJ9JqrjZLxpFz6" target="_blank" 
+                       class="bg-emerald-600 hover:bg-emerald-500 text-white px-7 py-3.5 rounded-xl font-extrabold shadow-xl shadow-emerald-950/70 transition transform hover:-translate-y-0.5 border border-emerald-400 flex items-center justify-center gap-3">
+                        <i class="fa-solid fa-clipboard-check text-lg"></i> Reservar mi Cupo Ahora
+                    </a>
+                    <a href="#herramientas" 
+                       class="bg-slate-800 hover:bg-slate-700 border border-slate-600 text-slate-200 hover:text-white px-6 py-3.5 rounded-xl font-bold shadow-lg transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-terminal text-blue-400"></i> Probar Herramientas
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Tarjeta Visual / Imagen Promocional del Taller -->
+            <div class="lg:col-span-5">
+                <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-slate-700/90 bg-slate-800/90 p-3 group">
+                    <div class="relative overflow-hidden rounded-xl bg-slate-950">
+                        <img src="Promoción curso.jpg" 
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x480/0f172a/10b981?text=Taller+Estadistico+Descriptivo+Inmobiliario'" 
+                             alt="Taller Análisis Estadístico Descriptivo de Muestras del Mercado Inmobiliario" 
+                             class="w-full h-auto object-cover transform group-hover:scale-102 transition duration-500">
+                        
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-transparent to-transparent opacity-80"></div>
+                        <div class="absolute bottom-4 left-4 right-4">
+                            <span class="text-xs uppercase font-extrabold text-emerald-400 tracking-wider">Escuela de Valuación Miguel Camacaro</span>
+                            <p class="text-sm font-semibold text-white drop-shadow">«Los datos reflejan la realidad del mercado; la estadística nos da la certeza de su valor.»</p>
+                        </div>
+                    </div>
+                    
+                    <div class="mt-3 p-3 bg-slate-900/80 rounded-xl border border-slate-800 flex items-center justify-between text-xs text-slate-400">
+                        <span><i class="fa-solid fa-shield-halved text-emerald-400 mr-1.5"></i> Criterio Técnico Riguroso</span>
+                        <a href="https://forms.gle/dEFqJ9JqrjZLxpFz6" target="_blank" class="text-emerald-400 hover:underline font-bold">
+                            Inscribirse <i class="fa-solid fa-arrow-up-right-from-square ml-1"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- SECCIÓN DEL FACILITADOR Y PROPUESTA DE VALOR -->
+    <section id="facilitador" class="max-w-6xl mx-auto px-4 mb-20 scroll-mt-24">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-stretch">
+            
+            <!-- Perfil del Facilitador -->
+            <div class="md:col-span-7 bg-slate-800/80 border border-slate-700 rounded-2xl shadow-xl p-8 flex flex-col sm:flex-row gap-6 items-center sm:items-start text-center sm:text-left">
+                <img src="Informal 3.png" 
+                     onerror="this.onerror=null; this.src='https://placehold.co/180x180/1e293b/10b981?text=Prof.+Miguel+Camacaro'" 
+                     alt="Prof. M.Sc. Miguel Camacaro Pérez" 
+                     class="w-32 h-32 md:w-36 md:h-36 rounded-full object-cover shadow-lg border-4 border-slate-600 flex-shrink-0">
+                <div class="flex-1">
+                    <span class="text-emerald-400 text-xs font-bold uppercase tracking-widest block mb-1">Facilitador del Taller</span>
+                    <h2 class="text-2xl font-bold text-white mb-1">Prof. M.Sc. Miguel Camacaro Pérez</h2>
+                    <h3 class="text-slate-400 font-medium mb-4 text-xs">Director de la Escuela de Valuación Miguel Camacaro</h3>
+                    
+                    <p class="text-slate-300 text-sm leading-relaxed mb-3">
+                        Ingeniero Civil (ULA), Máster of Science en Gerencia de la Construcción (UCLA - University of Florida) y Especialista en Valuación de Activos con más de cuatro décadas de ejercicio profesional e investigativo.
+                    </p>
+                    <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                        Reconocido precursor en Latinoamérica en la integración sinérgica de la <span class="text-emerald-400 font-semibold">Ciencia de la Valuación</span>, la <span class="text-teal-300 font-semibold">Ciencia de Datos</span>, la <span class="text-cyan-300 font-semibold">Inferencia Estadística</span> y los entornos de Inteligencia Artificial Generativa.
+                    </p>
+
+                    <div class="pt-3 border-t border-slate-700/70 flex flex-wrap items-center gap-4 text-xs">
+                        <a href="mailto:info@mcamacaroediciones.com" class="text-slate-300 hover:text-emerald-400 transition flex items-center gap-1.5 font-medium">
+                            <i class="fa-solid fa-envelope text-emerald-400"></i> info@mcamacaroediciones.com
+                        </a>
+                        <span class="text-slate-600">|</span>
+                        <span class="text-slate-400"><i class="fa-solid fa-location-dot text-slate-500 mr-1"></i> Madrid - Internacional</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Manifiesto: La Semilla hacia el futuro -->
+            <div class="md:col-span-5 bg-gradient-to-br from-slate-800/90 to-slate-900 border border-slate-700 rounded-2xl shadow-xl p-8 flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-lg bg-emerald-950/70 border border-emerald-500/40 text-emerald-400 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-seedling"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs uppercase font-extrabold tracking-wider text-emerald-400">Visión de Vanguardia</span>
+                            <h3 class="text-lg font-bold text-white leading-snug">Una semilla hacia el futuro de la valuación</h3>
+                        </div>
+                    </div>
+                    
+                    <p class="text-slate-300 text-sm leading-relaxed mb-4">
+                        Este espacio formativo no busca limitarse al cálculo descriptivo tradicional: es una invitación formal a <strong>elevar el estándar profesional</strong>, despertar el espíritu investigativo y dominar los flujos de trabajo analíticos que marcan el presente y futuro de nuestra disciplina.
+                    </p>
+                    
+                    <blockquote class="border-l-2 border-emerald-500 pl-3 py-1 my-3 text-xs italic text-slate-300 bg-slate-950/40 rounded-r">
+                        «El método comparativo del mercado alcanza su máxima precisión cuando integramos la ciencia de la valuación, la ciencia de datos y el potencial transformador de la inteligencia artificial generativa.»
+                    </blockquote>
+                </div>
+
+                <div class="pt-4 mt-2 border-t border-slate-700/80">
+                    <a href="https://forms.gle/dEFqJ9JqrjZLxpFz6" target="_blank" 
+                       class="w-full block text-center bg-slate-700 hover:bg-emerald-600 text-white font-bold py-2.5 px-4 rounded-lg transition text-xs border border-slate-600 hover:border-emerald-500">
+                        Participar en el Taller <i class="fa-solid fa-arrow-right ml-1.5"></i>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SECCIÓN 1: VIDEOS (FUNDAMENTACIÓN TEÓRICA VISUAL Y RIGUROSA) -->
+    <!-- ========================================================================= -->
+    <section id="videos" class="max-w-6xl mx-auto px-4 mb-20 scroll-mt-24">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 border-b border-slate-800 pb-4 gap-4">
+            <div>
+                <span class="text-red-400 text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+                    <i class="fa-brands fa-youtube text-red-500 text-base"></i> Sección 1 • Videoteca Teórica
+                </span>
+                <h2 class="text-3xl font-extrabold text-white mt-1">Fundamentación Teórica Visual y Rigurosa</h2>
+                <p class="text-slate-400 text-sm mt-1">
+                    Accede a las video-cápsulas conceptuales desarrolladas para asimilar el flujo completo: de la muestra a la decisión visual. Haz clic sobre cada imagen o botón para reproducir en YouTube.
+                </p>
+            </div>
+            <a href="https://www.youtube.com" target="_blank" class="text-xs text-slate-400 hover:text-white transition flex items-center gap-1.5 bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 flex-shrink-0">
+                <i class="fa-solid fa-play text-red-500"></i> YouTube Oficial
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <!-- Video 1 -->
+            <div class="bg-slate-800/80 border border-slate-700 rounded-2xl overflow-hidden shadow-lg transition duration-300 card-glow flex flex-col justify-between">
+                <div>
+                    <a href="https://youtu.be/6PkILDyTr2g" target="_blank" class="block relative group overflow-hidden bg-slate-950 aspect-video">
+                        <img src="https://img.youtube.com/vi/6PkILDyTr2g/hqdefault.jpg" 
+                             onerror="this.onerror=null; this.src='https://placehold.co/480x270/1e293b/38bdf8?text=El+Mapa+de+los+Datos'"
+                             alt="El Mapa de los Datos: De la Muestra a la Decisión Visual" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-slate-950/30 group-hover:bg-transparent transition"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="w-14 h-14 rounded-full bg-red-600/90 text-white flex items-center justify-center text-xl shadow-2xl group-hover:scale-110 transition group-hover:bg-red-500">
+                                <i class="fa-solid fa-play ml-1"></i>
+                            </span>
+                        </div>
+                        <span class="absolute bottom-2 right-2 bg-slate-900/90 text-white text-[11px] font-bold px-2 py-0.5 rounded border border-slate-700">YouTube</span>
+                    </a>
+                    <div class="p-5">
+                        <div class="flex items-center justify-between text-xs text-emerald-400 font-semibold mb-2">
+                            <span>MÓDULO TEÓRICO 01</span>
+                            <span><i class="fa-solid fa-diagram-project mr-1"></i>Mapa de Datos</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2 leading-snug">El Mapa de los Datos: De la Muestra a la Decisión Visual</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                            Cómo mapeamos la realidad del mercado inmobiliario desde el universo poblacional hasta la extracción de muestras representativas y estadísticos muestrales.
+                        </p>
+                    </div>
+                </div>
+                <div class="px-5 pb-5 pt-0">
+                    <a href="https://youtu.be/6PkILDyTr2g" target="_blank" 
+                       class="w-full bg-slate-700/80 hover:bg-red-600 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition duration-200 flex items-center justify-center gap-2 border border-slate-600 hover:border-red-500">
+                        <i class="fa-brands fa-youtube text-sm"></i> Ver Video en YouTube
+                    </a>
+                </div>
+            </div>
+
+            <!-- Video 2 -->
+            <div class="bg-slate-800/80 border border-slate-700 rounded-2xl overflow-hidden shadow-lg transition duration-300 card-glow flex flex-col justify-between">
+                <div>
+                    <a href="https://youtu.be/q_iYaXbLJqY" target="_blank" class="block relative group overflow-hidden bg-slate-950 aspect-video">
+                        <img src="https://img.youtube.com/vi/q_iYaXbLJqY/hqdefault.jpg" 
+                             onerror="this.onerror=null; this.src='https://placehold.co/480x270/1e293b/38bdf8?text=Lenguaje+Visual+del+Mercado'"
+                             alt="El Lenguaje Visual del Mercado Inmobiliario: variables estadísticas" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-slate-950/30 group-hover:bg-transparent transition"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="w-14 h-14 rounded-full bg-red-600/90 text-white flex items-center justify-center text-xl shadow-2xl group-hover:scale-110 transition group-hover:bg-red-500">
+                                <i class="fa-solid fa-play ml-1"></i>
+                            </span>
+                        </div>
+                        <span class="absolute bottom-2 right-2 bg-slate-900/90 text-white text-[11px] font-bold px-2 py-0.5 rounded border border-slate-700">YouTube</span>
+                    </a>
+                    <div class="p-5">
+                        <div class="flex items-center justify-between text-xs text-emerald-400 font-semibold mb-2">
+                            <span>MÓDULO TEÓRICO 02</span>
+                            <span><i class="fa-solid fa-chart-pie mr-1"></i>Taxonomía</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2 leading-snug">El Lenguaje Visual del Mercado Inmobiliario: Variables Estadísticas</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                            Guía definitiva de variables cualitativas (binarias, ordinales) y cuantitativas (discretas y continuas) para elegir la representación gráfica óptima.
+                        </p>
+                    </div>
+                </div>
+                <div class="px-5 pb-5 pt-0">
+                    <a href="https://youtu.be/q_iYaXbLJqY" target="_blank" 
+                       class="w-full bg-slate-700/80 hover:bg-red-600 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition duration-200 flex items-center justify-center gap-2 border border-slate-600 hover:border-red-500">
+                        <i class="fa-brands fa-youtube text-sm"></i> Ver Video en YouTube
+                    </a>
+                </div>
+            </div>
+
+            <!-- Video 3 -->
+            <div class="bg-slate-800/80 border border-slate-700 rounded-2xl overflow-hidden shadow-lg transition duration-300 card-glow flex flex-col justify-between">
+                <div>
+                    <a href="https://youtu.be/5fgPLL73jt0" target="_blank" class="block relative group overflow-hidden bg-slate-950 aspect-video">
+                        <img src="https://img.youtube.com/vi/5fgPLL73jt0/hqdefault.jpg" 
+                             onerror="this.onerror=null; this.src='https://placehold.co/480x270/1e293b/38bdf8?text=Construyendo+Histogramas'"
+                             alt="El pulso del mercado. Construyendo Histogramas" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-slate-950/30 group-hover:bg-transparent transition"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="w-14 h-14 rounded-full bg-red-600/90 text-white flex items-center justify-center text-xl shadow-2xl group-hover:scale-110 transition group-hover:bg-red-500">
+                                <i class="fa-solid fa-play ml-1"></i>
+                            </span>
+                        </div>
+                        <span class="absolute bottom-2 right-2 bg-slate-900/90 text-white text-[11px] font-bold px-2 py-0.5 rounded border border-slate-700">YouTube</span>
+                    </a>
+                    <div class="p-5">
+                        <div class="flex items-center justify-between text-xs text-emerald-400 font-semibold mb-2">
+                            <span>MÓDULO TEÓRICO 03</span>
+                            <span><i class="fa-solid fa-chart-column mr-1"></i>Histogramas</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2 leading-snug">El Pulso del Mercado: Construyendo Histogramas</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                            El pipeline riguroso paso a paso: cálculo del Rango, Regla de Sturges, amplitud de clases, frecuencias relativas y trazado del polígono de frecuencias.
+                        </p>
+                    </div>
+                </div>
+                <div class="px-5 pb-5 pt-0">
+                    <a href="https://youtu.be/5fgPLL73jt0" target="_blank" 
+                       class="w-full bg-slate-700/80 hover:bg-red-600 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition duration-200 flex items-center justify-center gap-2 border border-slate-600 hover:border-red-500">
+                        <i class="fa-brands fa-youtube text-sm"></i> Ver Video en YouTube
+                    </a>
+                </div>
+            </div>
+
+            <!-- Video 4 -->
+            <div class="bg-slate-800/80 border border-slate-700 rounded-2xl overflow-hidden shadow-lg transition duration-300 card-glow flex flex-col justify-between">
+                <div>
+                    <a href="https://youtu.be/2U2opT1Sthw" target="_blank" class="block relative group overflow-hidden bg-slate-950 aspect-video">
+                        <img src="https://img.youtube.com/vi/2U2opT1Sthw/hqdefault.jpg" 
+                             onerror="this.onerror=null; this.src='https://placehold.co/480x270/1e293b/38bdf8?text=Medidas+de+Tendencia+Central'"
+                             alt="El arte de encontrar el centro: Medidas de tendencia central" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-slate-950/30 group-hover:bg-transparent transition"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="w-14 h-14 rounded-full bg-red-600/90 text-white flex items-center justify-center text-xl shadow-2xl group-hover:scale-110 transition group-hover:bg-red-500">
+                                <i class="fa-solid fa-play ml-1"></i>
+                            </span>
+                        </div>
+                        <span class="absolute bottom-2 right-2 bg-slate-900/90 text-white text-[11px] font-bold px-2 py-0.5 rounded border border-slate-700">YouTube</span>
+                    </a>
+                    <div class="p-5">
+                        <div class="flex items-center justify-between text-xs text-emerald-400 font-semibold mb-2">
+                            <span>MÓDULO TEÓRICO 04</span>
+                            <span><i class="fa-solid fa-arrows-to-dot mr-1"></i>Tendencia Central</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2 leading-snug">El Arte de Encontrar el Centro: Medidas de Tendencia Central</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                            Superando el espejismo de la media. Comparativa de Media, Mediana y Moda en muestras asimétricas con el caso de «9 casas y una mansión».
+                        </p>
+                    </div>
+                </div>
+                <div class="px-5 pb-5 pt-0">
+                    <a href="https://youtu.be/2U2opT1Sthw" target="_blank" 
+                       class="w-full bg-slate-700/80 hover:bg-red-600 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition duration-200 flex items-center justify-center gap-2 border border-slate-600 hover:border-red-500">
+                        <i class="fa-brands fa-youtube text-sm"></i> Ver Video en YouTube
+                    </a>
+                </div>
+            </div>
+
+            <!-- Video 5 -->
+            <div class="bg-slate-800/80 border border-slate-700 rounded-2xl overflow-hidden shadow-lg transition duration-300 card-glow flex flex-col justify-between">
+                <div>
+                    <a href="https://youtu.be/5q6F0FpG7KE" target="_blank" class="block relative group overflow-hidden bg-slate-950 aspect-video">
+                        <img src="https://img.youtube.com/vi/5q6F0FpG7KE/hqdefault.jpg" 
+                             onerror="this.onerror=null; this.src='https://placehold.co/480x270/1e293b/38bdf8?text=De+la+Incertidumbre+a+la+Precision'"
+                             alt="De la Incertidumbre a la Precisión: Análisis, Saneamiento e Inferencia de Datos" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-slate-950/30 group-hover:bg-transparent transition"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="w-14 h-14 rounded-full bg-red-600/90 text-white flex items-center justify-center text-xl shadow-2xl group-hover:scale-110 transition group-hover:bg-red-500">
+                                <i class="fa-solid fa-play ml-1"></i>
+                            </span>
+                        </div>
+                        <span class="absolute bottom-2 right-2 bg-slate-900/90 text-white text-[11px] font-bold px-2 py-0.5 rounded border border-slate-700">YouTube</span>
+                    </a>
+                    <div class="p-5">
+                        <div class="flex items-center justify-between text-xs text-emerald-400 font-semibold mb-2">
+                            <span>MÓDULO TEÓRICO 05</span>
+                            <span><i class="fa-solid fa-filter mr-1"></i>Dispersión y Filtros</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2 leading-snug">De la Incertidumbre a la Precisión: Saneamiento e Inferencia</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                            Corrección de Bessel (n-1), Varianza, Desviación Estándar, Coeficiente de Variación (CV), Criterio de Chauvenet e Intervalos de Confianza saneados.
+                        </p>
+                    </div>
+                </div>
+                <div class="px-5 pb-5 pt-0">
+                    <a href="https://youtu.be/5q6F0FpG7KE" target="_blank" 
+                       class="w-full bg-slate-700/80 hover:bg-red-600 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition duration-200 flex items-center justify-center gap-2 border border-slate-600 hover:border-red-500">
+                        <i class="fa-brands fa-youtube text-sm"></i> Ver Video en YouTube
+                    </a>
+                </div>
+            </div>
+
+            <!-- Video 6 -->
+            <div class="bg-slate-800/80 border border-slate-700 rounded-2xl overflow-hidden shadow-lg transition duration-300 card-glow flex flex-col justify-between">
+                <div>
+                    <a href="https://youtu.be/r90ZLgn7d_4" target="_blank" class="block relative group overflow-hidden bg-slate-950 aspect-video">
+                        <img src="https://img.youtube.com/vi/r90ZLgn7d_4/hqdefault.jpg" 
+                             onerror="this.onerror=null; this.src='https://placehold.co/480x270/1e293b/38bdf8?text=Distribucion+de+Probabilidades'"
+                             alt="Distribución de Probabilidades e Inferencia en el Mercado Inmobiliario" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500 opacity-90 group-hover:opacity-100">
+                        <div class="absolute inset-0 bg-slate-950/30 group-hover:bg-transparent transition"></div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <span class="w-14 h-14 rounded-full bg-red-600/90 text-white flex items-center justify-center text-xl shadow-2xl group-hover:scale-110 transition group-hover:bg-red-500">
+                                <i class="fa-solid fa-play ml-1"></i>
+                            </span>
+                        </div>
+                        <span class="absolute bottom-2 right-2 bg-slate-900/90 text-white text-[11px] font-bold px-2 py-0.5 rounded border border-slate-700">YouTube</span>
+                    </a>
+                    <div class="p-5">
+                        <div class="flex items-center justify-between text-xs text-emerald-400 font-semibold mb-2">
+                            <span>MÓDULO TEÓRICO 06</span>
+                            <span><i class="fa-solid fa-wave-square mr-1"></i>Probabilidad</span>
+                        </div>
+                        <h3 class="text-lg font-bold text-white mb-2 leading-snug">Distribución de Probabilidades e Inferencia Inmobiliaria</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                            Modelado con distribuciones Binomial, Uniforme Continua, Normal (Gaussiana) y la transición crítica a la t de Student para muestras reducidas de avalúos.
+                        </p>
+                    </div>
+                </div>
+                <div class="px-5 pb-5 pt-0">
+                    <a href="https://youtu.be/r90ZLgn7d_4" target="_blank" 
+                       class="w-full bg-slate-700/80 hover:bg-red-600 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition duration-200 flex items-center justify-center gap-2 border border-slate-600 hover:border-red-500">
+                        <i class="fa-brands fa-youtube text-sm"></i> Ver Video en YouTube
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SECCIÓN 2: MATERIAL (DOCUMENTOS PDF CON VISOR MODAL INTEGRADO) -->
+    <!-- ========================================================================= -->
+    <section id="material" class="max-w-6xl mx-auto px-4 mb-20 scroll-mt-24">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 border-b border-slate-800 pb-4 gap-4">
+            <div>
+                <span class="text-amber-400 text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+                    <i class="fa-solid fa-file-pdf text-amber-500 text-base"></i> Sección 2 • Material Didáctico en PDF
+                </span>
+                <h2 class="text-3xl font-extrabold text-white mt-1">Material y Guías Metodológicas del Taller</h2>
+                <p class="text-slate-400 text-sm mt-1">
+                    Consulta los documentos de exposición, guías analíticas y presentaciones directamente en pantalla completa a través de nuestro visor integrado.
+                </p>
+            </div>
+            <span class="text-xs text-slate-400 bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700">
+                <i class="fa-solid fa-magnifying-glass text-emerald-400 mr-1"></i> Clic para Visualizar
+            </span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <!-- Acordeón 1: Material Principal de Exposición -->
+            <details open class="bg-slate-800/80 border border-slate-700 rounded-xl shadow-lg overflow-hidden group h-fit">
+                <summary class="flex justify-between items-center p-5 cursor-pointer bg-slate-800 hover:bg-slate-750 transition border-b border-slate-700/60">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-amber-900/40 text-amber-400 w-10 h-10 rounded-lg flex items-center justify-center text-lg border border-amber-500/30">
+                            <i class="fa-solid fa-chalkboard"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-white">Presentación General</h3>
+                            <span class="text-[11px] text-slate-400">Diapositivas y mapa de ruta</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300 icono-flecha"></i>
+                </summary>
+                
+                <div class="p-4 bg-slate-900/60 flex flex-col gap-2">
+                    <button onclick="abrirDocumento('0. Material Exposición.pdf', '0. Material de Exposición - Taller')" 
+                            class="flex items-center justify-between p-3 bg-slate-800 hover:bg-amber-950/40 border border-slate-700 hover:border-amber-500/50 rounded-lg transition text-left w-full group/btn">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-file-pdf text-amber-500 text-xl"></i>
+                            <div>
+                                <span class="text-sm font-semibold text-slate-200 group-hover/btn:text-white block">0. Material Exposición.pdf</span>
+                                <span class="text-[10px] text-slate-400">Guía de sesión intensiva de 3 horas</span>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-eye text-slate-500 group-hover/btn:text-amber-400 text-sm"></i>
+                    </button>
+
+                    <button onclick="abrirDocumento('1. Videos_Base Estadística.pdf', '1. Videos - Base Estadística')" 
+                            class="flex items-center justify-between p-3 bg-slate-800 hover:bg-amber-950/40 border border-slate-700 hover:border-amber-500/50 rounded-lg transition text-left w-full group/btn">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-file-pdf text-amber-500 text-xl"></i>
+                            <div>
+                                <span class="text-sm font-semibold text-slate-200 group-hover/btn:text-white block">1. Videos_Base Estadística.pdf</span>
+                                <span class="text-[10px] text-slate-400">Fundamentos y mapa de decisión</span>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-eye text-slate-500 group-hover/btn:text-amber-400 text-sm"></i>
+                    </button>
+                </div>
+            </details>
+
+            <!-- Acordeón 2: Visualización e Histogramas -->
+            <details open class="bg-slate-800/80 border border-slate-700 rounded-xl shadow-lg overflow-hidden group h-fit">
+                <summary class="flex justify-between items-center p-5 cursor-pointer bg-slate-800 hover:bg-slate-750 transition border-b border-slate-700/60">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-emerald-900/40 text-emerald-400 w-10 h-10 rounded-lg flex items-center justify-center text-lg border border-emerald-500/30">
+                            <i class="fa-solid fa-chart-simple"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-white">Variables y Distribuciones</h3>
+                            <span class="text-[11px] text-slate-400">Visualización & Histogramas</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300 icono-flecha"></i>
+                </summary>
+                
+                <div class="p-4 bg-slate-900/60 flex flex-col gap-2">
+                    <button onclick="abrirDocumento('2. Visualización_de_Datos_Inmobiliarios.pdf', '2. Visualización de Datos Inmobiliarios')" 
+                            class="flex items-center justify-between p-3 bg-slate-800 hover:bg-emerald-950/40 border border-slate-700 hover:border-emerald-500/50 rounded-lg transition text-left w-full group/btn">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-file-pdf text-emerald-400 text-xl"></i>
+                            <div>
+                                <span class="text-sm font-semibold text-slate-200 group-hover/btn:text-white block">2. Visualización de Datos Inmobiliarios</span>
+                                <span class="text-[10px] text-slate-400">Guía de variables y gráficos</span>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-eye text-slate-500 group-hover/btn:text-emerald-400 text-sm"></i>
+                    </button>
+
+                    <button onclick="abrirDocumento('3. Histogramas_Inmobiliarios.pdf', '3. Histogramas Inmobiliarios')" 
+                            class="flex items-center justify-between p-3 bg-slate-800 hover:bg-emerald-950/40 border border-slate-700 hover:border-emerald-500/50 rounded-lg transition text-left w-full group/btn">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-file-pdf text-emerald-400 text-xl"></i>
+                            <div>
+                                <span class="text-sm font-semibold text-slate-200 group-hover/btn:text-white block">3. Histogramas_Inmobiliarios.pdf</span>
+                                <span class="text-[10px] text-slate-400">Sturges, amplitud y frecuencias</span>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-eye text-slate-500 group-hover/btn:text-emerald-400 text-sm"></i>
+                    </button>
+                </div>
+            </details>
+
+            <!-- Acordeón 3: Tendencia Central, Dispersión y Probabilidades -->
+            <details open class="bg-slate-800/80 border border-slate-700 rounded-xl shadow-lg overflow-hidden group h-fit md:col-span-2 lg:col-span-1">
+                <summary class="flex justify-between items-center p-5 cursor-pointer bg-slate-800 hover:bg-slate-750 transition border-b border-slate-700/60">
+                    <div class="flex items-center gap-3">
+                        <div class="bg-cyan-900/40 text-cyan-400 w-10 h-10 rounded-lg flex items-center justify-center text-lg border border-cyan-500/30">
+                            <i class="fa-solid fa-calculator"></i>
+                        </div>
+                        <div>
+                            <h3 class="text-base font-bold text-white">Saneamiento y Probabilidad</h3>
+                            <span class="text-[11px] text-slate-400">Inferencia, Chauvenet e IC</span>
+                        </div>
+                    </div>
+                    <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300 icono-flecha"></i>
+                </summary>
+                
+                <div class="p-4 bg-slate-900/60 flex flex-col gap-2">
+                    <button onclick="abrirDocumento('4. Medidas_ tendencia central.pdf', '4. Medidas de Tendencia Central')" 
+                            class="flex items-center justify-between p-3 bg-slate-800 hover:bg-cyan-950/40 border border-slate-700 hover:border-cyan-500/50 rounded-lg transition text-left w-full group/btn">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-file-pdf text-cyan-400 text-xl"></i>
+                            <div>
+                                <span class="text-sm font-semibold text-slate-200 group-hover/btn:text-white block">4. Medidas_ tendencia central.pdf</span>
+                                <span class="text-[10px] text-slate-400">Media, Mediana, Moda & Zillow</span>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-eye text-slate-500 group-hover/btn:text-cyan-400 text-sm"></i>
+                    </button>
+
+                    <button onclick="abrirDocumento('5. Medidas-Dispersion.pdf', '5. Medidas de Dispersión y Saneamiento')" 
+                            class="flex items-center justify-between p-3 bg-slate-800 hover:bg-cyan-950/40 border border-slate-700 hover:border-cyan-500/50 rounded-lg transition text-left w-full group/btn">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-file-pdf text-cyan-400 text-xl"></i>
+                            <div>
+                                <span class="text-sm font-semibold text-slate-200 group-hover/btn:text-white block">5. Medidas-Dispersion.pdf</span>
+                                <span class="text-[10px] text-slate-400">Varianza, CV & Filtro Chauvenet</span>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-eye text-slate-500 group-hover/btn:text-cyan-400 text-sm"></i>
+                    </button>
+
+                    <button onclick="abrirDocumento('7. Distribucion_Probabilidades.pdf', '7. Distribución de Probabilidades')" 
+                            class="flex items-center justify-between p-3 bg-slate-800 hover:bg-cyan-950/40 border border-slate-700 hover:border-cyan-500/50 rounded-lg transition text-left w-full group/btn">
+                        <div class="flex items-center gap-3">
+                            <i class="fa-solid fa-file-pdf text-cyan-400 text-xl"></i>
+                            <div>
+                                <span class="text-sm font-semibold text-slate-200 group-hover/btn:text-white block">7. Distribución_Probabilidades.pdf</span>
+                                <span class="text-[10px] text-slate-400">Gauss, t-Student & Decisiones</span>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-eye text-slate-500 group-hover/btn:text-cyan-400 text-sm"></i>
+                    </button>
+                </div>
+            </details>
+
+        </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SECCIÓN 3: HERRAMIENTAS INTERACTIVAS (ENTRENAMIENTO PRÁCTICO) -->
+    <!-- ========================================================================= -->
+    <section id="herramientas" class="max-w-6xl mx-auto px-4 mb-20 scroll-mt-24">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 border-b border-slate-800 pb-4 gap-4">
+            <div>
+                <span class="text-blue-400 text-xs font-bold uppercase tracking-widest flex items-center gap-2">
+                    <i class="fa-solid fa-screwdriver-wrench text-blue-400 text-base"></i> Sección 3 • Plataformas Prácticas
+                </span>
+                <h2 class="text-3xl font-extrabold text-white mt-1">Ecosistema de Herramientas Dedicadas e Inéditas</h2>
+                <p class="text-slate-400 text-sm mt-1">
+                    Diseñadas específicamente para el profesional del avalúo: extracción mediante webscraping, saneamiento riguroso de atípicos, dashboards industriales y econometría inferencial. Haz clic en las capturas o en los botones para abrir la herramienta.
+                </p>
+            </div>
+            <a href="https://mundo-valor.github.io" target="_blank" class="text-xs text-slate-400 hover:text-white transition flex items-center gap-1.5 bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 flex-shrink-0">
+                <i class="fa-brands fa-github text-slate-300"></i> Mundo-Valor Hub
+            </a>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <!-- Herramienta 1: Webscraping Real Estate -->
+            <div class="bg-slate-800/80 border border-slate-700 rounded-2xl overflow-hidden shadow-xl transition duration-300 card-glow flex flex-col justify-between">
+                <div>
+                    <a href="https://mundo-valor.github.io/webscraping_realestate/" target="_blank" class="block relative group overflow-hidden bg-slate-950 aspect-[16/10] border-b border-slate-700/70">
+                        <img src="https://placehold.co/600x375/0f172a/38bdf8?text=ValuData+Webscraping+Real+Estate" 
+                             alt="Webscraping Real Estate" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-slate-950/40 group-hover:bg-slate-950/10 transition"></div>
+                        <div class="absolute top-3 left-3 bg-blue-600/90 text-white text-[10px] font-bold px-2 py-0.5 rounded border border-blue-400">
+                            01. Extracción
+                        </div>
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                            <span class="bg-blue-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-lg flex items-center gap-1">
+                                Abrir Aplicación <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </span>
+                        </div>
+                    </a>
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold text-white mb-2 leading-tight">Webscraping Real Estate</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                            De la URL al dato estructurado para valuación. Extracción parametrizada por tipología de inmueble (residencial, comercial, oficinas, galpones), control QA y exportación para análisis comparativo.
+                        </p>
+                    </div>
+                </div>
+                <div class="px-5 pb-5 pt-0">
+                    <a href="https://mundo-valor.github.io/webscraping_realestate/" target="_blank" 
+                       class="w-full bg-blue-600/80 hover:bg-blue-500 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition duration-200 flex items-center justify-center gap-2 border border-blue-400 shadow-md">
+                        <i class="fa-solid fa-spider"></i> Ejecutar Webscraping
+                    </a>
+                </div>
+            </div>
+
+            <!-- Herramienta 2: Análisis Estadístico de Muestras -->
+            <div class="bg-slate-800/80 border border-slate-700 rounded-2xl overflow-hidden shadow-xl transition duration-300 card-glow flex flex-col justify-between">
+                <div>
+                    <a href="https://mundo-valor.github.io/analisisestadistico_muestrasmercado/" target="_blank" class="block relative group overflow-hidden bg-slate-950 aspect-[16/10] border-b border-slate-700/70">
+                        <img src="https://placehold.co/600x375/0f172a/10b981?text=Analisis+Estadistico+de+Muestras" 
+                             alt="Análisis estadístico de muestras del mercado inmobiliario" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-slate-950/40 group-hover:bg-slate-950/10 transition"></div>
+                        <div class="absolute top-3 left-3 bg-emerald-600/90 text-white text-[10px] font-bold px-2 py-0.5 rounded border border-emerald-400">
+                            02. Descriptiva
+                        </div>
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                            <span class="bg-emerald-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-lg flex items-center gap-1">
+                                Abrir Aplicación <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </span>
+                        </div>
+                    </a>
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold text-white mb-2 leading-tight">Análisis Estadístico de Muestras</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                            Plataforma integral de cálculo descriptivo univariado para el Método Comparativo de Mercado: tendencia central, dispersión, histogramas automáticos y contrastes de normalidad en local.
+                        </p>
+                    </div>
+                </div>
+                <div class="px-5 pb-5 pt-0">
+                    <a href="https://mundo-valor.github.io/analisisestadistico_muestrasmercado/" target="_blank" 
+                       class="w-full bg-emerald-600/80 hover:bg-emerald-500 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition duration-200 flex items-center justify-center gap-2 border border-emerald-400 shadow-md">
+                        <i class="fa-solid fa-chart-line"></i> Abrir Análisis Estadístico
+                    </a>
+                </div>
+            </div>
+
+            <!-- Herramienta 3: Saneamiento de Muestra / Atipicómetro -->
+            <div class="bg-slate-800/80 border border-slate-700 rounded-2xl overflow-hidden shadow-xl transition duration-300 card-glow flex flex-col justify-between">
+                <div>
+                    <a href="https://mundo-valor.github.io/atipicometro_inmobiliario/" target="_blank" class="block relative group overflow-hidden bg-slate-950 aspect-[16/10] border-b border-slate-700/70">
+                        <img src="https://placehold.co/600x375/0f172a/f59e0b?text=Atipicometro+Inmobiliario" 
+                             alt="Saneamiento de Muestra de Mercado - Atipicómetro Inmobiliario" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-slate-950/40 group-hover:bg-slate-950/10 transition"></div>
+                        <div class="absolute top-3 left-3 bg-amber-600/90 text-white text-[10px] font-bold px-2 py-0.5 rounded border border-amber-400">
+                            03. Detección Outliers
+                        </div>
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                            <span class="bg-amber-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-lg flex items-center gap-1">
+                                Abrir Aplicación <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </span>
+                        </div>
+                    </a>
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold text-white mb-2 leading-tight">Atipicómetro Inmobiliario</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                            Saneamiento de muestra de mercado para N ≤ 30. Diez criterios probabilísticos de exclusión (Chauvenet, Boxplot, Z-Score), cálculo de campo de arbitrio e informe técnico general imprimible.
+                        </p>
+                    </div>
+                </div>
+                <div class="px-5 pb-5 pt-0">
+                    <a href="https://mundo-valor.github.io/atipicometro_inmobiliario/" target="_blank" 
+                       class="w-full bg-amber-600/80 hover:bg-amber-500 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition duration-200 flex items-center justify-center gap-2 border border-amber-400 shadow-md">
+                        <i class="fa-solid fa-filter-circle-xmark"></i> Iniciar Atipicómetro
+                    </a>
+                </div>
+            </div>
+
+            <!-- Herramienta 4: Reporte Inmobiliario (Dashboard Industrial) -->
+            <div class="bg-slate-800/80 border border-slate-700 rounded-2xl overflow-hidden shadow-xl transition duration-300 card-glow flex flex-col justify-between">
+                <div>
+                    <a href="https://mundo-valor.github.io/dasboard_industrial/" target="_blank" class="block relative group overflow-hidden bg-slate-950 aspect-[16/10] border-b border-slate-700/70">
+                        <img src="https://placehold.co/600x375/0f172a/6366f1?text=Dashboard+Inmobiliario+Industrial" 
+                             alt="Reporte Inmobiliario Dashboard Industrial" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-slate-950/40 group-hover:bg-slate-950/10 transition"></div>
+                        <div class="absolute top-3 left-3 bg-indigo-600/90 text-white text-[10px] font-bold px-2 py-0.5 rounded border border-indigo-400">
+                            04. Visual BI
+                        </div>
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                            <span class="bg-indigo-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-lg flex items-center gap-1">
+                                Abrir Aplicación <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                            </span>
+                        </div>
+                    </a>
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold text-white mb-2 leading-tight">Reporte Inmobiliario (Dashboard)</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                            Panel interactivo con segmentadores dinámicos por zona, condición física (Heidecke), edad aparente y área construida vs. precio total. Detección visual instantánea de ofertas discordantes.
+                        </p>
+                    </div>
+                </div>
+                <div class="px-5 pb-5 pt-0">
+                    <a href="https://mundo-valor.github.io/dasboard_industrial/" target="_blank" 
+                       class="w-full bg-indigo-600/80 hover:bg-indigo-500 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition duration-200 flex items-center justify-center gap-2 border border-indigo-400 shadow-md">
+                        <i class="fa-solid fa-table-columns"></i> Explorar Dashboard
+                    </a>
+                </div>
+            </div>
+
+            <!-- Herramienta 5: Análisis Econométrico e Inferencia MRLM -->
+            <div class="bg-slate-800/80 border border-slate-700 rounded-2xl overflow-hidden shadow-xl transition duration-300 card-glow flex flex-col justify-between md:col-span-2 lg:col-span-2">
+                <div>
+                    <a href="https://mundo-valor.github.io/modoloest-inferencial/" target="_blank" class="block relative group overflow-hidden bg-slate-950 aspect-[21/9] border-b border-slate-700/70">
+                        <img src="https://placehold.co/800x340/0f172a/14b8a6?text=EconometricVal+Pro+|+MRLM+NBR+14653-2" 
+                             alt="Análisis econométrico de muestras de mercado inmobiliario" 
+                             class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-slate-950/40 group-hover:bg-slate-950/10 transition"></div>
+                        <div class="absolute top-3 left-3 bg-teal-600/90 text-white text-[10px] font-bold px-2 py-0.5 rounded border border-teal-400">
+                            05. Econometría e Inferencia Avanzada
+                        </div>
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                            <span class="bg-teal-600 text-white text-xs font-bold px-4 py-2 rounded-lg shadow-lg flex items-center gap-1.5">
+                                Abrir Laboratorio Econométrico <i class="fa-solid fa-arrow-up-right-from-square text-[11px]"></i>
+                            </span>
+                        </div>
+                    </a>
+                    <div class="p-5">
+                        <div class="flex flex-wrap items-center justify-between gap-2 mb-2">
+                            <h3 class="text-xl font-bold text-white">Análisis Econométrico de Muestras de Mercado</h3>
+                            <span class="text-xs bg-slate-900 text-teal-300 px-2.5 py-1 rounded-full border border-teal-500/40">ABNT NBR 14653-2 / IVS 2025</span>
+                        </div>
+                        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed mb-4">
+                            Modelado de Regresión Lineal Múltiple (MRLM) con encuadramiento automático de grados de fundamentación y precisión. Diagnóstico de colinealidad, homocedasticidad, normalidad de residuos y cálculo de intervalos de predicción 100% en el navegador.
+                        </p>
+                    </div>
+                </div>
+                <div class="px-5 pb-5 pt-0">
+                    <a href="https://mundo-valor.github.io/modoloest-inferencial/" target="_blank" 
+                       class="w-full bg-teal-600 hover:bg-teal-500 text-white font-bold py-3 px-4 rounded-xl text-xs sm:text-sm transition duration-200 flex items-center justify-center gap-2 border border-teal-400 shadow-md">
+                        <i class="fa-solid fa-microchip"></i> Iniciar Laboratorio Econométrico Inmobiliario
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- BANNER DE CIERRE: INSCRIPCIÓN Y RESERVA -->
+    <section class="max-w-5xl mx-auto px-4 mb-20">
+        <div class="bg-gradient-to-r from-slate-900 via-slate-800 to-emerald-950/80 border border-emerald-500/40 rounded-3xl p-8 sm:p-12 text-center shadow-2xl relative overflow-hidden">
+            <div class="absolute -right-16 -top-16 w-52 h-52 bg-emerald-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -left-16 -bottom-16 w-52 h-52 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <span class="text-emerald-400 font-extrabold text-xs uppercase tracking-widest mb-3 block">
+                Plazas Limitadas para Interacción Práctica
+            </span>
+            <h2 class="text-2xl sm:text-4xl font-extrabold text-white mb-4 leading-tight">
+                «Los datos reflejan la realidad del mercado; <br class="hidden sm:inline">la estadística nos da la certeza de su valor.»
+            </h2>
+            <p class="text-slate-300 text-sm max-w-2xl mx-auto mb-8 leading-relaxed">
+                Reserva tu cupo y sé parte de esta experiencia formativa de frontera técnica con el Prof. M.Sc. Miguel Camacaro Pérez.
+            </p>
+
+            <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+                <a href="https://forms.gle/dEFqJ9JqrjZLxpFz6" target="_blank" 
+                   class="w-full sm:w-auto bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold px-8 py-3.5 rounded-xl shadow-xl shadow-emerald-950/80 transition transform hover:-translate-y-0.5 border border-emerald-400 flex items-center justify-center gap-2.5 text-sm">
+                    <i class="fa-solid fa-pen-nib"></i> Formulario Oficial de Reserva
+                </a>
+                <a href="mailto:info@mcamacaroediciones.com" 
+                   class="w-full sm:w-auto bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white font-semibold px-6 py-3.5 rounded-xl transition border border-slate-600 text-sm flex items-center justify-center gap-2">
+                    <i class="fa-regular fa-paper-plane text-emerald-400"></i> Solicitar Información por Email
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PIE DE PÁGINA INSTITUCIONAL -->
+    <footer class="w-full bg-slate-950 border-t border-slate-800 py-10 relative z-10 text-xs text-slate-400">
+        <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+            <div>
+                <strong class="text-white font-bold block text-sm mb-1">Escuela de Valuación Miguel Camacaro</strong>
+                <p class="text-slate-500">Ciencia de la Valuación • Ciencia de Datos • Inteligencia Artificial Generativa</p>
+                <p class="text-slate-500 mt-1">&copy; 2026 Miguel Camacaro Ediciones. Todos los derechos reservados.</p>
+            </div>
+            
+            <div class="flex items-center gap-4 text-slate-400">
+                <a href="#presentacion" class="hover:text-emerald-400 transition">Inicio</a>
+                <span>•</span>
+                <a href="#videos" class="hover:text-emerald-400 transition">Videos</a>
+                <span>•</span>
+                <a href="#material" class="hover:text-emerald-400 transition">Material</a>
+                <span>•</span>
+                <a href="#herramientas" class="hover:text-emerald-400 transition">Herramientas</a>
+                <span>•</span>
+                <a href="https://paypal.me/spilimcurso" target="_blank" class="text-blue-400 hover:underline">Apoyar con Donación</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========================================================================= -->
+    <!-- VISOR MODAL INDIVIDUAL (PANTALLA COMPLETA CON IFRAME) -->
+    <!-- ========================================================================= -->
+    <div id="visor-modal" class="fixed inset-0 z-50 bg-slate-950/95 hidden flex-col transition-opacity duration-300">
+        <!-- Cabecera del visor -->
+        <div class="flex justify-between items-center px-4 md:px-6 py-3 bg-slate-900 border-b border-slate-800 shadow-xl">
+            <div class="flex items-center gap-3 overflow-hidden">
+                <div class="w-8 h-8 rounded bg-amber-500/20 text-amber-400 flex items-center justify-center flex-shrink-0">
+                    <i class="fa-solid fa-file-pdf"></i>
+                </div>
+                <h3 id="visor-titulo" class="text-white font-bold text-sm md:text-base truncate">
+                    <span>Documento</span>
+                </h3>
+            </div>
+            
+            <div class="flex items-center gap-2">
+                <a id="btn-descarga-modal" href="#" download class="text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white px-3 py-1.5 rounded-lg border border-slate-700 transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-download text-emerald-400"></i> <span class="hidden sm:inline">Descargar</span>
+                </a>
+                <button onclick="cerrarVisorModal()" class="text-slate-400 hover:text-red-400 transition p-1.5 rounded-lg hover:bg-slate-800 focus:outline-none" title="Cerrar Visor (Esc)">
+                    <i class="fa-solid fa-xmark text-2xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Contenedor del Iframe -->
+        <div class="flex-1 w-full h-full relative bg-slate-900 p-2 md:p-5">
+            <iframe id="visor-iframe" class="w-full h-full rounded-xl shadow-2xl bg-white border border-slate-700" src="" title="Visor de PDF"></iframe>
+        </div>
+    </div>
+
+    <!-- SCRIPT DEL VISOR MODAL -->
+    <script>
+        const modal = document.getElementById('visor-modal');
+        const iframe = document.getElementById('visor-iframe');
+        const tituloSpan = document.querySelector('#visor-titulo span');
+        const btnDescarga = document.getElementById('btn-descarga-modal');
+
+        function abrirDocumento(rutaArchivo, nombreDocumento) {
+            tituloSpan.innerText = nombreDocumento;
+            btnDescarga.href = rutaArchivo;
+            // Configurar parámetros nativos de visor PDF para ocultar paneles redundantes
+            iframe.src = rutaArchivo + "#toolbar=1&navpanes=0&scrollbar=1";
+            
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function cerrarVisorModal() {
+            iframe.src = "about:blank";
+            tituloSpan.innerText = "Documento";
+            btnDescarga.href = "#";
+            
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            
+            document.body.style.overflow = 'auto'; 
+        }
+
+        // Cerrar visor modal con la tecla Escape
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape" && !modal.classList.contains('hidden')) {
+                cerrarVisorModal();
+            }
+        });
+    </script>
+</body>
+</html>
