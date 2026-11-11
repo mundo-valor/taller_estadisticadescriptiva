@@ -217,7 +217,7 @@
                 <div class="flex-1">
                     <span class="text-emerald-400 text-xs font-bold uppercase tracking-widest block mb-1">Facilitador del Taller</span>
                     <h2 class="text-2xl font-bold text-white mb-1">Prof. M.Sc. Miguel Camacaro Pérez</h2>
-                    <h3 class="text-slate-400 font-medium mb-3 text-xs">Fundador y Director de la Escuela de Valuación Miguel Camacaro</h3>
+                    <h3 class="text-slate-400 font-medium mb-3 text-xs">Fundador de la Escuela de Valuación Miguel Camacaro</h3>
                     
                     <p class="text-slate-300 text-sm leading-relaxed mb-3">
                         Ingeniero Civil (Universidad de Los Andes), Máster of Science en Gerencia de la Construcción (UCLA - University of Florida) y Especialista en Valuación de Activos con más de cuatro décadas de trayectoria profesional, pericial y académica.
@@ -798,171 +798,14 @@
     <!-- SECCIÓN 4: ECOSISTEMA DE HERRAMIENTAS ESPECIALIZADAS -->
     <!-- ========================================================================= -->
     <section id="herramientas" class="max-w-6xl mx-auto px-4 mb-20 scroll-mt-24">
-        <div class="mb-8 border-b border-slate-800 pb-4">
-            <span class="text-cyan-400 text-xs font-bold uppercase tracking-widest flex items-center gap-2">
-                <i class="fa-solid fa-screwdriver-wrench text-cyan-400 text-base"></i> Sección 4 • Plataformas Prácticas
-            </span>
-            <h2 class="text-3xl font-extrabold text-white mt-1">Ecosistema de herramientas especializadas</h2>
-            <p class="text-slate-400 text-sm mt-1">
-                Diseñadas específicamente para el profesional del avalúo: extracción mediante webscraping, saneamiento riguroso de atípicos, dashboards industriales y econometría inferencial. Haz clic sobre cada imagen para abrir la aplicación web.
-            </p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            
-            <!-- Acordeón 1: Material Principal de Exposición -->
-            <details open class="bg-slate-800/80 border border-slate-700 rounded-xl shadow-lg overflow-hidden group h-fit">
-                <summary class="flex justify-between items-center p-5 cursor-pointer bg-slate-800 hover:bg-slate-750 transition border-b border-slate-700/60">
-                    <div class="flex items-center gap-3">
-                        <div class="bg-amber-900/40 text-amber-400 w-10 h-10 rounded-lg flex items-center justify-center text-lg border border-amber-500/30">
-                            <i class="fa-solid fa-chalkboard"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-base font-bold text-white">Presentación General</h3>
-                            <span class="text-[11px] text-slate-400">Diapositivas y mapa de ruta</span>
-                        </div>
-                    </div>
-                    <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300 icono-flecha"></i>
-                </summary>
-                
-                <div class="p-4 bg-slate-900/60 flex flex-col gap-2">
-                    <button onclick="abrirDocumento('0. Material Exposición.pdf', '0. Material de Exposición - Taller')" 
-                            class="flex items-center justify-between p-3 bg-slate-800 hover:bg-amber-950/40 border border-slate-700 hover:border-amber-500/50 rounded-lg transition text-left w-full group/btn">
-                        <div class="flex items-center gap-3">
-                            <i class="fa-solid fa-file-pdf text-amber-500 text-xl"></i>
-                            <div>
-                                <span class="text-sm font-semibold text-slate-200 group-hover/btn:text-white block">0. Material Exposición.pdf</span>
-                                <span class="text-[10px] text-slate-400">Guía de sesión intensiva de 3 horas</span>
-                            </div>
-                        </div>
-                        <i class="fa-solid fa-eye text-slate-500 group-hover/btn:text-amber-400 text-sm"></i>
-                    </button>
-
-                    <button onclick="abrirDocumento('1. Videos_Base Estadística.pdf', '1. Videos - Base Estadística')" 
-                            class="flex items-center justify-between p-3 bg-slate-800 hover:bg-amber-950/40 border border-slate-700 hover:border-amber-500/50 rounded-lg transition text-left w-full group/btn">
-                        <div class="flex items-center gap-3">
-                            <i class="fa-solid fa-file-pdf text-amber-500 text-xl"></i>
-                            <div>
-                                <span class="text-sm font-semibold text-slate-200 group-hover/btn:text-white block">1. Videos_Base Estadística.pdf</span>
-                                <span class="text-[10px] text-slate-400">Fundamentos y mapa de decisión</span>
-                            </div>
-                        </div>
-                        <i class="fa-solid fa-eye text-slate-500 group-hover/btn:text-amber-400 text-sm"></i>
-                    </button>
-                </div>
-            </details>
-
-            <!-- Acordeón 2: Visualización e Histogramas -->
-            <details open class="bg-slate-800/80 border border-slate-700 rounded-xl shadow-lg overflow-hidden group h-fit">
-                <summary class="flex justify-between items-center p-5 cursor-pointer bg-slate-800 hover:bg-slate-750 transition border-b border-slate-700/60">
-                    <div class="flex items-center gap-3">
-                        <div class="bg-emerald-900/40 text-emerald-400 w-10 h-10 rounded-lg flex items-center justify-center text-lg border border-emerald-500/30">
-                            <i class="fa-solid fa-chart-simple"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-base font-bold text-white">Variables y Distribuciones</h3>
-                            <span class="text-[11px] text-slate-400">Visualización & Histogramas</span>
-                        </div>
-                    </div>
-                    <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300 icono-flecha"></i>
-                </summary>
-                
-                <div class="p-4 bg-slate-900/60 flex flex-col gap-2">
-                    <button onclick="abrirDocumento('2. Visualización_de_Datos_Inmobiliarios.pdf', '2. Visualización de Datos Inmobiliarios')" 
-                            class="flex items-center justify-between p-3 bg-slate-800 hover:bg-emerald-950/40 border border-slate-700 hover:border-emerald-500/50 rounded-lg transition text-left w-full group/btn">
-                        <div class="flex items-center gap-3">
-                            <i class="fa-solid fa-file-pdf text-emerald-400 text-xl"></i>
-                            <div>
-                                <span class="text-sm font-semibold text-slate-200 group-hover/btn:text-white block">2. Visualización de Datos Inmobiliarios</span>
-                                <span class="text-[10px] text-slate-400">Guía de variables y gráficos</span>
-                            </div>
-                        </div>
-                        <i class="fa-solid fa-eye text-slate-500 group-hover/btn:text-emerald-400 text-sm"></i>
-                    </button>
-
-                    <button onclick="abrirDocumento('3. Histogramas_Inmobiliarios.pdf', '3. Histogramas Inmobiliarios')" 
-                            class="flex items-center justify-between p-3 bg-slate-800 hover:bg-emerald-950/40 border border-slate-700 hover:border-emerald-500/50 rounded-lg transition text-left w-full group/btn">
-                        <div class="flex items-center gap-3">
-                            <i class="fa-solid fa-file-pdf text-emerald-400 text-xl"></i>
-                            <div>
-                                <span class="text-sm font-semibold text-slate-200 group-hover/btn:text-white block">3. Histogramas_Inmobiliarios.pdf</span>
-                                <span class="text-[10px] text-slate-400">Sturges, amplitud y frecuencias</span>
-                            </div>
-                        </div>
-                        <i class="fa-solid fa-eye text-slate-500 group-hover/btn:text-emerald-400 text-sm"></i>
-                    </button>
-                </div>
-            </details>
-
-            <!-- Acordeón 3: Tendencia Central, Dispersión y Probabilidades -->
-            <details open class="bg-slate-800/80 border border-slate-700 rounded-xl shadow-lg overflow-hidden group h-fit md:col-span-2 lg:col-span-1">
-                <summary class="flex justify-between items-center p-5 cursor-pointer bg-slate-800 hover:bg-slate-750 transition border-b border-slate-700/60">
-                    <div class="flex items-center gap-3">
-                        <div class="bg-cyan-900/40 text-cyan-400 w-10 h-10 rounded-lg flex items-center justify-center text-lg border border-cyan-500/30">
-                            <i class="fa-solid fa-calculator"></i>
-                        </div>
-                        <div>
-                            <h3 class="text-base font-bold text-white">Saneamiento y Probabilidad</h3>
-                            <span class="text-[11px] text-slate-400">Inferencia, Chauvenet e IC</span>
-                        </div>
-                    </div>
-                    <i class="fa-solid fa-chevron-down text-slate-400 transition-transform duration-300 icono-flecha"></i>
-                </summary>
-                
-                <div class="p-4 bg-slate-900/60 flex flex-col gap-2">
-                    <button onclick="abrirDocumento('4. Medidas_ tendencia central.pdf', '4. Medidas de Tendencia Central')" 
-                            class="flex items-center justify-between p-3 bg-slate-800 hover:bg-cyan-950/40 border border-slate-700 hover:border-cyan-500/50 rounded-lg transition text-left w-full group/btn">
-                        <div class="flex items-center gap-3">
-                            <i class="fa-solid fa-file-pdf text-cyan-400 text-xl"></i>
-                            <div>
-                                <span class="text-sm font-semibold text-slate-200 group-hover/btn:text-white block">4. Medidas_ tendencia central.pdf</span>
-                                <span class="text-[10px] text-slate-400">Media, Mediana, Moda & Zillow</span>
-                            </div>
-                        </div>
-                        <i class="fa-solid fa-eye text-slate-500 group-hover/btn:text-cyan-400 text-sm"></i>
-                    </button>
-
-                    <button onclick="abrirDocumento('5. Medidas-Dispersion.pdf', '5. Medidas de Dispersión y Saneamiento')" 
-                            class="flex items-center justify-between p-3 bg-slate-800 hover:bg-cyan-950/40 border border-slate-700 hover:border-cyan-500/50 rounded-lg transition text-left w-full group/btn">
-                        <div class="flex items-center gap-3">
-                            <i class="fa-solid fa-file-pdf text-cyan-400 text-xl"></i>
-                            <div>
-                                <span class="text-sm font-semibold text-slate-200 group-hover/btn:text-white block">5. Medidas-Dispersion.pdf</span>
-                                <span class="text-[10px] text-slate-400">Varianza, CV & Filtro Chauvenet</span>
-                            </div>
-                        </div>
-                        <i class="fa-solid fa-eye text-slate-500 group-hover/btn:text-cyan-400 text-sm"></i>
-                    </button>
-
-                    <button onclick="abrirDocumento('7. Distribucion_Probabilidades.pdf', '7. Distribución de Probabilidades')" 
-                            class="flex items-center justify-between p-3 bg-slate-800 hover:bg-cyan-950/40 border border-slate-700 hover:border-cyan-500/50 rounded-lg transition text-left w-full group/btn">
-                        <div class="flex items-center gap-3">
-                            <i class="fa-solid fa-file-pdf text-cyan-400 text-xl"></i>
-                            <div>
-                                <span class="text-sm font-semibold text-slate-200 group-hover/btn:text-white block">7. Distribución_Probabilidades.pdf</span>
-                                <span class="text-[10px] text-slate-400">Gauss, t-Student & Decisiones</span>
-                            </div>
-                        </div>
-                        <i class="fa-solid fa-eye text-slate-500 group-hover/btn:text-cyan-400 text-sm"></i>
-                    </button>
-                </div>
-            </details>
-
-        </div>
-    </section>
-
-    <!-- ========================================================================= -->
-    <!-- SECCIÓN 3: ECOSISTEMA DE HERRAMIENTAS ESPECIALIZADAS -->
-    <!-- ========================================================================= -->
-    <section id="herramientas" class="max-w-6xl mx-auto px-4 mb-20 scroll-mt-24">
         <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-8 border-b border-slate-800 pb-4 gap-4">
             <div>
                 <span class="text-cyan-400 text-xs font-bold uppercase tracking-widest flex items-center gap-2">
-                    <i class="fa-solid fa-screwdriver-wrench text-cyan-400 text-base"></i> Sección 3 • Plataformas Prácticas
+                    <i class="fa-solid fa-screwdriver-wrench text-cyan-400 text-base"></i> Sección 4 • Plataformas Prácticas
                 </span>
                 <h2 class="text-3xl font-extrabold text-white mt-1">Ecosistema de herramientas especializadas</h2>
                 <p class="text-slate-400 text-sm mt-1">
-                    Diseñadas específicamente para el profesional del avalúo: extracción mediante webscraping, saneamiento riguroso de atípicos, dashboards industriales y econometría inferencial. Haz clic en las capturas o en los botones para abrir la herramienta.
+                    Diseñadas específicamente para el profesional del avalúo: extracción mediante webscraping, saneamiento riguroso de atípicos, dashboards industriales y econometría inferencial. Haz clic en las capturas o en los botones para abrir o descargar cada herramienta.
                 </p>
             </div>
             <a href="https://mundo-valor.github.io" target="_blank" class="text-xs text-slate-400 hover:text-white transition flex items-center gap-1.5 bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 flex-shrink-0">
@@ -972,6 +815,39 @@
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
+            <!-- Herramienta 0: Scraping Inmobiliario por Tipología (Descargable RAR) -->
+            <div class="bg-slate-800/80 border border-amber-500/40 rounded-2xl overflow-hidden shadow-xl transition duration-300 card-glow flex flex-col justify-between">
+                <div>
+                    <a href="scraping_tipologias.rar" download class="block relative group overflow-hidden bg-slate-950 aspect-[16/10] border-b border-slate-700/70">
+                        <img src="Scraping_tipologia.jpg" 
+                             onerror="this.onerror=null; this.src='https://placehold.co/600x375/0f172a/f59e0b?text=Scraping+Inmobiliario+por+Tipologia';" 
+                             alt="Scraping Inmobiliario por Tipología" 
+                             class="w-full h-full object-cover object-top group-hover:scale-105 transition duration-500">
+                        <div class="absolute inset-0 bg-slate-950/30 group-hover:bg-slate-950/0 transition"></div>
+                        <div class="absolute top-3 left-3 bg-amber-600/90 text-white text-[10px] font-bold px-2 py-0.5 rounded border border-amber-400">
+                            Descargable • RAR
+                        </div>
+                        <div class="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                            <span class="bg-amber-600 text-white text-xs font-bold px-3 py-1.5 rounded-lg shadow-lg flex items-center gap-1.5">
+                                <i class="fa-solid fa-download"></i> Descargar Aplicación
+                            </span>
+                        </div>
+                    </a>
+                    <div class="p-5">
+                        <h3 class="text-lg font-bold text-white mb-2 leading-tight">Scraping Inmobiliario por Tipología</h3>
+                        <p class="text-xs text-slate-300 leading-relaxed mb-4">
+                            «Scraping Inmobiliario por Tipología» es una página de trabajo (landing page) que se ejecuta en su propio computador y sirve para levantar muestras de mercado inmobiliario. Usted elige el tipo de inmueble y la herramienta le muestra solo las variables pertinentes para esa tipología. Luego pega los enlaces de los avisos, la herramienta extrae los datos y los guarda en una base de datos en formato CSV.
+                        </p>
+                    </div>
+                </div>
+                <div class="px-5 pb-5 pt-0">
+                    <a href="scraping_tipologias.rar" download 
+                       class="w-full bg-amber-600/80 hover:bg-amber-500 text-white font-bold py-2.5 px-4 rounded-xl text-xs transition duration-200 flex items-center justify-center gap-2 border border-amber-400 shadow-md">
+                        <i class="fa-solid fa-file-zipper"></i> Descargar Herramienta (.rar)
+                    </a>
+                </div>
+            </div>
+
             <!-- Herramienta 1: Webscraping Real Estate (Herramienta 1.png) -->
             <div class="bg-slate-800/80 border border-slate-700 rounded-2xl overflow-hidden shadow-xl transition duration-300 card-glow flex flex-col justify-between">
                 <div>
@@ -1236,7 +1112,6 @@
 
         function abrirDocumento(rutaArchivo, nombreDocumento) {
             tituloSpan.innerText = nombreDocumento;
-            // Configurar el visor PDF nativo del navegador con barra de herramientas deshabilitada
             iframe.src = rutaArchivo + "#toolbar=0&navpanes=0&scrollbar=1";
             
             modal.classList.remove('hidden');
